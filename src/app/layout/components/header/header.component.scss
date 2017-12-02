@@ -2,8 +2,11 @@ $topnav-background-color: #222;
 :host {
     .navbar {
         background-color: $topnav-background-color;
+        background-image: url('../../../../assets/images/brand.png');
+        background-repeat: no-repeat;
         .navbar-brand {
             color: #fff;
+            margin-left: 220px;
         }
         .nav-item > a {
             color: #999;
