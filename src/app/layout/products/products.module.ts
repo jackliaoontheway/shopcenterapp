@@ -8,12 +8,20 @@ import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { ProductlabelComponent } from './productlabel/productlabel.component';
 import { ProductstockComponent } from './productstock/productstock.component';
 import { MatComponentsModule } from '../../shared/modules/mat-components/mat-components.module';
-
-
+import { AddProductComponent } from './productinfo/add-product/add-product.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    imports: [CommonModule, NgbModule.forRoot(), ProductsRoutingModule, PageHeaderModule, MatComponentsModule
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgbModule.forRoot(),
+        ProductsRoutingModule,
+        PageHeaderModule,
+        MatComponentsModule,
+        HttpClientModule
     ],
-    declarations: [ProductinfoComponent, ProductlabelComponent, ProductstockComponent]
+    declarations: [ProductinfoComponent, ProductlabelComponent, ProductstockComponent, AddProductComponent]
 })
 export class ProductsModule {}

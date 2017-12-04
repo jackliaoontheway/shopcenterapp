@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
+import { Product } from '../model/product';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-productinfo',
@@ -14,18 +16,28 @@ export class ProductinfoComponent implements OnInit {
 
   pageEvent: PageEvent;
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+  productList: Product[];
+
+  procutCriteria: Product;
+
+  constructor(private http: HttpClient) {
+
+  }
 
   onChange(param) {
     this.pageEvent = param;
     console.log(param);
   }
 
+  search() {
+    console.log('search something');
+  }
+
   ngOnInit() {
+    this.http.get('http://localhost:8080/shopcenterms/product/list')
+    .subscribe((response) => {
+      this.productList = JSON.parse(JSON.stringify(response));
+     });
   }
 
 }

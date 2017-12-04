@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
+        FormsModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {

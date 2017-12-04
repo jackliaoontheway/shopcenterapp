@@ -1,0 +1,40 @@
+<div class="add-product-form">
+  <div class="col-lg-6">
+      <form role="form">
+          <fieldset class="form-group">
+            <input [(ngModel)]="product.id" name="id" hidden class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>&nbsp;商品名称</label>
+            <input [(ngModel)]="product.name" name="name" class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+              <label>&nbsp;售价</label>
+              <input [(ngModel)]="product.price" name="price" class="form-control">
+            </fieldset>
+          <fieldset class="form-group">
+              <label>&nbsp;尝鲜期</label>
+              <input [(ngModel)]="product.expiredDate" name="expiredDate" class="form-control">
+            </fieldset>
+          <fieldset class="form-group">
+            <label>&nbsp;商品成分</label>
+            <textarea [(ngModel)]="product.composition" name="composition" class="form-control" rows="3"></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+              <label>&nbsp;生产商</label>
+              <input [(ngModel)]="product.produceCompany" name="produceCompany" class="form-control">
+            </fieldset>
+          <fieldset class="form-group">
+            <label>&nbsp;食品经营许可证</label>
+            <input [(ngModel)]="product.companyCode" name="companyCode" class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>&nbsp;加盟热线</label>
+            <input [(ngModel)]="product.companyMobile" name="companyMobile" class="form-control">
+          </fieldset>
+          <a  class="btn btn-secondary" style="color:azure;float:right" role="button" (click)="onReset()">&nbsp;重置&nbsp;</a>
+          
+          <a  class="btn btn-secondary" style="color:azure;float:right;margin-right:10px;" role="button" (click)="onSubmit()">&nbsp;提交&nbsp;</a>
+      </form>
+  </div>
+</div>
