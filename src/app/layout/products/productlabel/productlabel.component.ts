@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Product } from '../model/product';
+
 
 @Component({
   selector: 'app-productlabel',
@@ -8,28 +11,29 @@ import { PageEvent } from '@angular/material';
 })
 export class ProductlabelComponent implements OnInit {
 
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions = [5, 10, 25, 100];
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
 
-  pageEvent: PageEvent;
+  product: Product = new Product();
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+  constructor(private _formBuilder: FormBuilder) { }
 
-  onChange(param) {
-    this.pageEvent = param;
-    console.log(param);
-  }
-
-  search() {
-    console.log('search something');
-  }
-  
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
+    });
   }
 
 }

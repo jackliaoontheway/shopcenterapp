@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 import { Product } from '../model/product';
-import { HttpClient } from '@angular/common/http';
+import { ProductService } from '../services/product.service';
+
 
 @Component({
   selector: 'app-productinfo',
@@ -20,7 +21,7 @@ export class ProductinfoComponent implements OnInit {
 
   procutCriteria: Product;
 
-  constructor(private http: HttpClient) {
+  constructor(private productService: ProductService) {
 
   }
 
@@ -30,13 +31,17 @@ export class ProductinfoComponent implements OnInit {
   }
 
   search() {
-    console.log('search something');
+    this.listProduct();
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/shopcenterms/product/list')
-    .subscribe((response) => {
+    this.listProduct();
+  }
+
+  listProduct() {
+    this.productService.getProduct().subscribe((response) => {
       this.productList = JSON.parse(JSON.stringify(response));
+      this.length = this.productList.length;
      });
   }
 

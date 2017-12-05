@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../model/product';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ProductService } from '../../services/product.service';
+import { MatSnackBar} from '@angular/material';
+import { SnackBarComponent } from '../../../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-add-product',
@@ -11,7 +13,7 @@ export class AddProductComponent implements OnInit {
 
   product: Product;
 
-  constructor(private http: HttpClient) {
+  constructor(private productService: ProductService, private snackBar: MatSnackBar) {
     this.product = new Product();
   }
 
@@ -20,10 +22,12 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(JSON.stringify(this.product));
-    this.http.post('http://localhost:8080/shopcenterms/product/add', this.product)
+    this.productService.addProduct(this.product)
       .subscribe((response) => {
-        alert(response);
+        this.snackBar.open('新增成功', 'Done', {
+          duration: 2000,
+          verticalPosition: 'bottom'
+        });
     });
   }
 

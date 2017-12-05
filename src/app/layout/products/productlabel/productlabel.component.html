@@ -1,57 +1,79 @@
-
-<div class="card mb-3">
-    <div class="card-header">
-        <form class="filter-form">
-            <mat-form-field class="filter-input">
-            <input matInput placeholder="商品名称">
-            </mat-form-field>
-            <mat-form-field class="filter-input">
-                <input matInput placeholder="商品代码">
-            </mat-form-field>
-            <mat-form-field class="filter-input">
-                <mat-select placeholder="Favorite food">
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{ food.viewValue }}
-                </mat-option>
-                </mat-select>
-            </mat-form-field>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <!-- <button (click)="search()" class="btn btn-secondary">&nbsp;查询&nbsp;</button> -->
-            <a  class="btn btn-secondary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a>
-            <!-- <a  class="btn btn-primary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a> -->
-            <!-- <button type="submit" class="btn btn-primary">&nbsp;查询&nbsp;</button> -->
-            <!-- <button type="submit" class="btn btn-primary">&nbsp;增加&nbsp;</button> -->
+<mat-horizontal-stepper [linear]="isLinear" class="product-label-component-div">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>输入SKU</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="SKU" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>下一步</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>选择生产日期</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="输入生产日期" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>上一步</button>
+        <button mat-button matStepperNext>下一步</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>设置打印个数</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="输入打印个数" formControlName="thirdCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>上一步</button>
+            <button mat-button matStepperNext>下一步</button>
+          </div>
         </form>
+      </mat-step>
+      <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel>读取RFID</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="将RFID放置感应区,数量和打印个数一致" formControlName="fourthCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>上一步</button>
+            <button mat-button matStepperNext>下一步</button>
+          </div>
+        </form>
+      </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>完成</ng-template>
+    在卡片上点击打印
+    <div>
+      <button mat-button matStepperPrevious>返回</button>
     </div>
-    <div class="card-body table-responsive">
-        <table class="table table-hover table-striped">
-            <thead>
-            <tr>
-                <th>Page</th>
-                <th>Visits</th>
-                <th>% New Visits</th>
-                <th>Revenue</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>/index.html</td>
-                <td>1265</td>
-                <td>32.3%</td>
-                <td>$321.33</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="card-body">
-        <mat-paginator 
-            [length]="length"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions"
-            (page)="onChange($event)"
-            >
-        </mat-paginator>
-    </div>
-</div>
-
-
+  </mat-step>
+</mat-horizontal-stepper>
+<br/><br/>
+<mat-card class="product-label-card">
+    <mat-card-content>
+        <div class="product-label-header">
+            <span class="product-label-content product-label-contentheader">产品名称：蓝莓乳酪烧</span>
+        </div>
+        <div>
+            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        </div>
+        <div>
+            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        </div>
+        <div>
+            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        </div>
+        <div>
+            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        </div>
+        <div class="product-label-price">
+            <span>售价$3.8</span>
+        </div>
+    </mat-card-content>
+</mat-card>
