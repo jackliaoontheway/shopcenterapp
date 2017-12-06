@@ -11,6 +11,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductinfoComponent implements OnInit {
 
+  pageIndex = 0;
   length = 100;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
@@ -19,7 +20,7 @@ export class ProductinfoComponent implements OnInit {
 
   productList: Product[];
 
-  procutCriteria: Product;
+  procutCriteria = new Product();
 
   constructor(private productService: ProductService) {
 
@@ -28,6 +29,7 @@ export class ProductinfoComponent implements OnInit {
   onChange(param) {
     this.pageEvent = param;
     console.log(param);
+    this.pageIndex = param.pageIndex;
   }
 
   search() {
@@ -39,7 +41,9 @@ export class ProductinfoComponent implements OnInit {
   }
 
   listProduct() {
-    this.productService.getProduct().subscribe((response) => {
+    this.procutCriteria.pageIndex = this.pageIndex;
+    this.procutCriteria.pageSize = this.pageSize;
+    this.productService.getProduct(this.procutCriteria).subscribe((response) => {
       this.productList = JSON.parse(JSON.stringify(response));
       this.length = this.productList.length;
      });

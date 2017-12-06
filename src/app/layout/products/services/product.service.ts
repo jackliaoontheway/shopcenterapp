@@ -11,8 +11,8 @@ export class ProductService {
 
   }
 
-  getProduct() {
-    return this.http.get(this.productBaseUrl + '/list');
+  getProduct(procutCriteria: Product) {
+    return this.http.post(this.productBaseUrl + '/listbycriteria', procutCriteria);
   }
 
   addProduct(product: Product) {
