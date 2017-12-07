@@ -9,6 +9,9 @@ export class Product {
     companyMobile: string;
     companyCode: string;
 
+    produceDate: string;
+    labelCount;
+
     pageIndex: number;
     pageSize: number;
 }

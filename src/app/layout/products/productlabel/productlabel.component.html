@@ -2,9 +2,14 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>输入SKU</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="SKU" formControlName="firstCtrl" required>
-      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="SKU" aria-label="SKU" [(ngModel)]="procutCriteria.sku" name="sku"  [matAutocomplete]="auto" [formControl]="skuCtrl">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSkuSelected($event)">
+            <mat-option *ngFor="let product of productList" [value]="product.sku">
+              <span>{{ product.sku }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
       <div>
         <button mat-button matStepperNext>下一步</button>
       </div>
@@ -14,8 +19,10 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>选择生产日期</ng-template>
       <mat-form-field>
-        <input matInput placeholder="输入生产日期" formControlName="secondCtrl" required>
-      </mat-form-field>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="procutCriteria.produceDate" name="produceDate" placeholder="选择生产日期" [formControl]="produceDateCtrl">
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+        </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>上一步</button>
         <button mat-button matStepperNext>下一步</button>
@@ -37,18 +44,16 @@
       <mat-step [stepControl]="fourthFormGroup">
         <form [formGroup]="fourthFormGroup">
           <ng-template matStepLabel>读取RFID</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="将RFID放置感应区,数量和打印个数一致" formControlName="fourthCtrl" required>
-          </mat-form-field>
+              <span class="product-label-rfid-tips">请将RFID放置感应区,数量和打印个数一致,点击读取</span>
           <div>
             <button mat-button matStepperPrevious>上一步</button>
-            <button mat-button matStepperNext>下一步</button>
+            <button mat-button matStepperNext>读取</button>
           </div>
         </form>
       </mat-step>
   <mat-step>
     <ng-template matStepLabel>完成</ng-template>
-    在卡片上点击打印
+      <span class="product-label-rfid-tips">读取成功,请在新的浏览器窗口打印</span>
     <div>
       <button mat-button matStepperPrevious>返回</button>
     </div>
@@ -57,23 +62,30 @@
 <br/><br/>
 <mat-card class="product-label-card">
     <mat-card-content>
-        <div class="product-label-header">
-            <span class="product-label-content product-label-contentheader">产品名称：蓝莓乳酪烧</span>
+        <div class="product-label-header product-label-div">
+            <span class="product-label-content product-label-contentheader">产品名称：{{procutCriteria.name}}</span>
         </div>
-        <div>
-            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        <br/>
+        <div class="product-label-div">
+            <span class="product-label-content">产品主成分：{{procutCriteria.composition}}</span>
         </div>
-        <div>
-            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        <div class="product-label-div">
+            <span class="product-label-content">生产日期: {{procutCriteria.produceDate | date: 'dd/MM/yyyy'}}</span>
         </div>
-        <div>
-            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        <div class="product-label-div">
+            <span class="product-label-content">尝鲜期：{{procutCriteria.expiredDate}}</span>
         </div>
-        <div>
-            <span class="product-label-content">产品主成分：面粉，芝士，蓝莓</span>
+        <div class="product-label-div">
+            <span class="product-label-content">生产商：{{procutCriteria.produceCompany}}</span>
+        </div>
+        <div class="product-label-div">
+          <span class="product-label-content">食品经营许可证：{{procutCriteria.companyCode}}</span>
+        </div>
+        <div class="product-label-div">
+          <span class="product-label-content">拎包加盟热线：{{procutCriteria.companyMobile}}</span>
         </div>
         <div class="product-label-price">
-            <span>售价$3.8</span>
+            <span>售价￥{{procutCriteria.price}}</span>
         </div>
     </mat-card-content>
 </mat-card>

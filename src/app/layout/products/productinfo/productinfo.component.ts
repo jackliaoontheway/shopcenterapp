@@ -12,11 +12,9 @@ import { ProductService } from '../services/product.service';
 export class ProductinfoComponent implements OnInit {
 
   pageIndex = 0;
-  length = 100;
+  totalCount = 0;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
-
-  pageEvent: PageEvent;
 
   productList: Product[];
 
@@ -27,9 +25,9 @@ export class ProductinfoComponent implements OnInit {
   }
 
   onChange(param) {
-    this.pageEvent = param;
-    console.log(param);
     this.pageIndex = param.pageIndex;
+    this.pageSize = param.pageSize;
+    this.listProduct();
   }
 
   search() {
@@ -44,8 +42,8 @@ export class ProductinfoComponent implements OnInit {
     this.procutCriteria.pageIndex = this.pageIndex;
     this.procutCriteria.pageSize = this.pageSize;
     this.productService.getProduct(this.procutCriteria).subscribe((response) => {
-      this.productList = JSON.parse(JSON.stringify(response));
-      this.length = this.productList.length;
+      this.productList = JSON.parse(JSON.stringify(response)).data;
+      this.totalCount = JSON.parse(JSON.stringify(response)).totalCount;
      });
   }
 
