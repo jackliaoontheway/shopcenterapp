@@ -33,7 +33,7 @@
         <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>设置打印个数</ng-template>
           <mat-form-field>
-            <input matInput placeholder="输入打印个数" formControlName="thirdCtrl" required>
+            <input matInput placeholder="输入打印个数" [(ngModel)]="procutCriteria.labelCount" formControlName="thirdCtrl" required>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>上一步</button>
@@ -47,7 +47,7 @@
               <span class="product-label-rfid-tips">请将RFID放置感应区,数量和打印个数一致,点击读取</span>
           <div>
             <button mat-button matStepperPrevious>上一步</button>
-            <button mat-button matStepperNext>读取</button>
+            <button mat-button matStepperNext (click)="readRFID()">读取</button>
           </div>
         </form>
       </mat-step>

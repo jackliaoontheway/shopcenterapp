@@ -19,4 +19,8 @@ export class ProductService {
       return this.http.post(this.productBaseUrl + '/add', product);
   }
 
+  readRFID(product: Product) {
+    return this.http.post(this.productBaseUrl + '/readrfid', product);
+  }
+
 }

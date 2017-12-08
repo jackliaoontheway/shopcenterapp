@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Product } from '../model/product';
 import { ProductService } from '../services/product.service';
@@ -27,7 +27,7 @@ export class ProductlabelComponent implements OnInit {
   skuCtrl: FormControl;
   produceDateCtrl = new FormControl();
 
-  constructor(private _formBuilder: FormBuilder, private productService: ProductService) {
+  constructor(private _formBuilder: FormBuilder, private productService: ProductService, private snackBar: MatSnackBar) {
 
     this.skuCtrl = new FormControl();
     this.skuCtrl.valueChanges.subscribe(
@@ -72,7 +72,28 @@ export class ProductlabelComponent implements OnInit {
       if (this.productList && this.productList.length > 0) {
         this.procutCriteria = this.productList[0];
       }
-     });
+    });
+  }
+
+  readRFID() {
+    console.log('read');
+    this.productService.readRFID(this.procutCriteria)
+    .subscribe((response) => {
+      const result = JSON.parse(JSON.stringify(response)).data;
+
+      if (result == this.procutCriteria.labelCount) {
+        this.snackBar.open('读取成功', 'Done', {
+          duration: 2000,
+          verticalPosition: 'bottom'
+        });
+      } else {
+        const errors = JSON.parse(JSON.stringify(response)).errors;
+        this.snackBar.open('读取失败,info:' + JSON.stringify(errors), 'Fail', {
+          duration: 10000,
+          verticalPosition: 'bottom'
+        });
+      }
+  });
   }
 
 
