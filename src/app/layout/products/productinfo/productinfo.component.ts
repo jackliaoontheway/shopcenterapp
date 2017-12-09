@@ -11,6 +11,8 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductinfoComponent implements OnInit {
 
+  editProduct: Product;
+  currentTab = 'productinfo';
   pageIndex = 0;
   totalCount = 0;
   pageSize = 10;
@@ -35,7 +37,13 @@ export class ProductinfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editProduct = new Product();
     this.listProduct();
+  }
+
+  edit(product) {
+    this.currentTab = 'editproduct';
+    this.editProduct = product;
   }
 
   listProduct() {

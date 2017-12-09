@@ -1,36 +1,46 @@
-<div class="col col-xl-6 col-lg-12">
-  <div class="card mb-3">
-      <div class="card-header">Inverse table</div>
-      <div class="card-body table-responsive">
-          <table class="table table-inverse">
-              <thead>
-              <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-              </tr>
-              <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-              </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+<app-page-header [heading]="'商品库存信息'" [icon]="'fa-table'"></app-page-header>
+<div class="card mb-3">
+    <div class="card-header">
+        <form class="filter-form">
+        <mat-form-field class="filter-input">
+            <input matInput [(ngModel)]="procutCriteria.sku" name="sku" placeholder="SKU">
+        </mat-form-field>
+            <mat-form-field class="filter-input">
+            <input matInput [(ngModel)]="procutCriteria.name" name="name" placeholder="商品名称">
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a  class="btn btn-secondary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a>
+        </form>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>SKU</th>
+                <th>商品名称</th>
+                <th>售价</th>
+                <th>生产日期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of productList"> 
+                <td>{{product.id}}</td>
+                <td>{{product.sku}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.produceDate}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-body">
+        <mat-paginator 
+            [length]="totalCount"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="onChange($event)"
+            >
+        </mat-paginator>
+    </div>
+</div>

@@ -1,85 +1,87 @@
-
-            <ngb-tabset class="full-tableset">
-                <ngb-tab title="商品信息">
-                    <ng-template ngbTabContent>
-                        <div class="card mb-3">
-                            <div class="card-header">
-                              <form class="filter-form">
-                                <mat-form-field class="filter-input">
-                                    <input matInput [(ngModel)]="procutCriteria.sku" name="sku" placeholder="SKU">
-                                </mat-form-field>
-                                  <mat-form-field class="filter-input">
-                                    <input matInput [(ngModel)]="procutCriteria.name" name="name" placeholder="商品名称">
-                                  </mat-form-field>
-                                  <!-- <mat-form-field class="filter-input">
-                                      <input matInput placeholder="商品代码">
-                                  </mat-form-field>
-                                  <mat-form-field class="filter-input">
-                                      <mat-select placeholder="Favorite food">
-                                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                                          {{ food.viewValue }}
-                                        </mat-option>
-                                      </mat-select>
-                                  </mat-form-field> -->
-                                  &nbsp;&nbsp;&nbsp;&nbsp;
-                                  <!-- <button (click)="search()" class="btn btn-secondary">&nbsp;查询&nbsp;</button> -->
-                                  <a  class="btn btn-secondary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a>
-                                  <!-- <a  class="btn btn-primary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a> -->
-                                  <!-- <button type="submit" class="btn btn-primary">&nbsp;查询&nbsp;</button> -->
-                                  <!-- <button type="submit" class="btn btn-primary">&nbsp;增加&nbsp;</button> -->
-                              </form>
-                            </div>
-                            <div class="card-body table-responsive">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>SKU</th>
-                                        <th>商品名称</th>
-                                        <th>售价</th>
-                                        <th>尝鲜期</th>
-                                        <th>商品成分</th>
-                                        <th>生产商</th>
-                                        <th>食品经营许可证</th>
-                                        <th>加盟热线</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let product of productList"> 
-                                        <td>{{product.id}}</td>
-                                        <td>{{product.sku}}</td>
-                                        <td>{{product.name}}</td>
-                                        <td>{{product.price}}</td>
-                                        <td>{{product.expiredDate}}</td>
-                                        <td>{{product.composition}}</td>
-                                        <td>{{product.produceCompany}}</td>
-                                        <td>{{product.companyMobile}}</td>
-                                        <td>{{product.companyCode}}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="card-body">
-                            <mat-paginator 
-                              [length]="totalCount"
-                              [pageSize]="pageSize"
-                              [pageSizeOptions]="pageSizeOptions"
-                              (page)="onChange($event)"
-                              >
-                          </mat-paginator>
-                          </div>
-                          </div>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="新增商品">
-                    <ng-template ngbTabContent>
-                        <app-add-product></app-add-product>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="打印标签">
-                    <ng-template ngbTabContent>
-                        <app-productlabel></app-productlabel>
-                    </ng-template>
-                </ngb-tab>
-            </ngb-tabset>
+<!-- <app-page-header [heading]="'商品档案信息'" [icon]="'fa-table'"></app-page-header> -->
+<ngb-tabset [activeId]="currentTab" class="full-tableset">
+    <ngb-tab id="productinfo" title="商品信息">
+        <ng-template ngbTabContent>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <form class="filter-form">
+                    <mat-form-field class="filter-input">
+                        <input matInput [(ngModel)]="procutCriteria.sku" name="sku" placeholder="SKU">
+                    </mat-form-field>
+                        <mat-form-field class="filter-input">
+                        <input matInput [(ngModel)]="procutCriteria.name" name="name" placeholder="商品名称">
+                        </mat-form-field>
+                        <!-- <mat-form-field class="filter-input">
+                            <input matInput placeholder="商品代码">
+                        </mat-form-field>
+                        <mat-form-field class="filter-input">
+                            <mat-select placeholder="Favorite food">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{ food.viewValue }}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- <button (click)="search()" class="btn btn-secondary">&nbsp;查询&nbsp;</button> -->
+                        <a  class="btn btn-secondary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a>
+                        <!-- <a  class="btn btn-primary" style="color:azure" role="button" (click)="search()">&nbsp;查询&nbsp;</a> -->
+                        <!-- <button type="submit" class="btn btn-primary">&nbsp;查询&nbsp;</button> -->
+                        <!-- <button type="submit" class="btn btn-primary">&nbsp;增加&nbsp;</button> -->
+                    </form>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>SKU</th>
+                            <th>商品名称</th>
+                            <th>售价</th>
+                            <th>尝鲜期</th>
+                            <th>商品成分</th>
+                            <th>生产商</th>
+                            <th>食品经营许可证</th>
+                            <th>加盟热线</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let product of productList"> 
+                            <td>{{product.id}}</td>
+                            <td>{{product.sku}}</td>
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.expiredDate}}</td>
+                            <td>{{product.composition}}</td>
+                            <td>{{product.produceCompany}}</td>
+                            <td>{{product.companyMobile}}</td>
+                            <td>{{product.companyCode}}</td>
+                            <td><button mat-button (click)="edit(product)">&nbsp;编辑&nbsp;</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                <mat-paginator 
+                    [length]="totalCount"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="onChange($event)"
+                    >
+                </mat-paginator>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab id="editproduct" title="新增商品">
+        <ng-template ngbTabContent>
+            <app-add-product [editProduct]="editProduct"></app-add-product>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab id="printlabel" title="打印标签">
+        <ng-template ngbTabContent>
+            <app-productlabel></app-productlabel>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>
 

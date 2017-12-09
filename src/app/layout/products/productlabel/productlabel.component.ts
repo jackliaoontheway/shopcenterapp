@@ -76,24 +76,46 @@ export class ProductlabelComponent implements OnInit {
   }
 
   readRFID() {
-    console.log('read');
-    this.productService.readRFID(this.procutCriteria)
-    .subscribe((response) => {
-      const result = JSON.parse(JSON.stringify(response)).data;
+    if (!this.procutCriteria.sku) {
+      this.snackBar.open('请输入SKU', 'Invalied', {
+        duration: 5000,
+        verticalPosition: 'bottom'
+      });
+      return;
+    }
 
-      if (result == this.procutCriteria.labelCount) {
-        this.snackBar.open('读取成功', 'Done', {
-          duration: 2000,
-          verticalPosition: 'bottom'
-        });
-      } else {
-        const errors = JSON.parse(JSON.stringify(response)).errors;
+    if (!this.procutCriteria.produceDate) {
+      this.snackBar.open('请输入生产日期', 'Invalied', {
+        duration: 5000,
+        verticalPosition: 'bottom'
+      });
+      return;
+    }
+
+    if (!this.procutCriteria.labelCount) {
+      this.snackBar.open('请输入打印数量', 'Invalied', {
+        duration: 5000,
+        verticalPosition: 'bottom'
+      });
+      return;
+    }
+
+    this.productService.readRFID(this.procutCriteria).subscribe((response) => {
+      const result = JSON.parse(JSON.stringify(response)).data;
+      const errors = JSON.parse(JSON.stringify(response)).errors;
+      if (errors) {
         this.snackBar.open('读取失败,info:' + JSON.stringify(errors), 'Fail', {
           duration: 10000,
           verticalPosition: 'bottom'
         });
+      } else {
+        this.productService.downloadlabels(result);
+        this.snackBar.open('读取成功', 'Done', {
+          duration: 2000,
+          verticalPosition: 'bottom'
+        });
       }
-  });
+    });
   }
 
 

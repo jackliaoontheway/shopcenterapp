@@ -10,7 +10,7 @@ export class Product {
     companyCode: string;
 
     produceDate: string;
-    labelCount;
+    labelCount: number;
 
     pageIndex: number;
     pageSize: number;
