@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatSnackBar } from '@angular/material';
 import { Product } from '../model/product';
 import { ProductService } from '../services/product.service';
 
@@ -22,7 +22,7 @@ export class ProductinfoComponent implements OnInit {
 
   procutCriteria = new Product();
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService , private snackBar: MatSnackBar) {
 
   }
 
@@ -44,6 +44,16 @@ export class ProductinfoComponent implements OnInit {
   edit(product) {
     this.currentTab = 'editproduct';
     this.editProduct = product;
+  }
+
+  delete(product) {
+    this.productService.deleteProduct(product).subscribe((response) => {
+      this.listProduct();
+      this.snackBar.open('成功', 'Done', {
+        duration: 2000,
+        verticalPosition: 'bottom'
+      });
+  });
   }
 
   listProduct() {

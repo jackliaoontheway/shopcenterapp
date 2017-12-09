@@ -23,11 +23,16 @@ export class ProductService {
       return this.http.post(this.productBaseUrl + '/add', product);
   }
 
+  deleteProduct(product: Product) {
+    return this.http.post(this.productBaseUrl + '/delete', product);
+  }
+
   readRFID(product: Product) {
     return this.http.post(this.productBaseUrl + '/readrfid', product);
   }
 
   downloadlabels(labelid: string) {
+
     window.open(this.productBaseUrl + '/downloadlabels?downloadId=' + labelid);
     /*this.http.get(this.productBaseUrl + '/downloadlabels?downloadId=' + labelid,
      {responseType : 'blob'}).subscribe( resp => {

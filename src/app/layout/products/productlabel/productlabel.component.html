@@ -62,15 +62,15 @@
 <br/><br/>
 <mat-card class="product-label-card">
     <mat-card-content>
-        <div class="product-label-header product-label-div">
-            <span class="product-label-content product-label-contentheader">产品名称：{{procutCriteria.name}}</span>
+        <div class="product-label-div">
+            <span class="product-label-price">产品名称：{{procutCriteria.name}}</span>
         </div>
         <br/>
         <div class="product-label-div">
             <span class="product-label-content">产品主成分：{{procutCriteria.composition}}</span>
         </div>
         <div class="product-label-div">
-            <span class="product-label-content">生产日期: {{procutCriteria.produceDate | date: 'dd/MM/yyyy'}}</span>
+            <span class="product-label-content">生产日期: {{procutCriteria.produceDate | date: 'yyyy/MM/dd'}}</span>
         </div>
         <div class="product-label-div">
             <span class="product-label-content">尝鲜期：{{procutCriteria.expiredDate}}</span>
