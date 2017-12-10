@@ -11,9 +11,13 @@ import { routerTransition } from '../router.animations';
 export class LoginComponent implements OnInit {
     constructor(public router: Router) {}
 
+    username: string;
+    password: string;
+
     ngOnInit() {}
 
     onLoggedin() {
+        console.log(this.username + '-' + this.password);
         localStorage.setItem('isLoggedin', 'true');
     }
 }
