@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/product';
 import { ProductService } from '../services/product.service';
+import { ProductStock } from '../model/productstock';
 
 @Component({
   selector: 'app-productstock',
@@ -14,9 +15,9 @@ export class ProductstockComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
 
-  productList: Product[];
+  productList: ProductStock[];
 
-  procutCriteria = new Product();
+  procutCriteria = new ProductStock();
 
   constructor(private productService: ProductService) {
 

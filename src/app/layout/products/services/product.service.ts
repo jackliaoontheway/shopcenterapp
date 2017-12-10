@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../model/product';
+import { ProductStock } from '../model/productstock';
 
 @Injectable()
 export class ProductService {
@@ -15,7 +16,7 @@ export class ProductService {
     return this.http.post(this.productBaseUrl + '/listbycriteria', procutCriteria);
   }
 
-  getProductStock(procutCriteria: Product) {
+  getProductStock(procutCriteria: ProductStock) {
     return this.http.post(this.productBaseUrl + '/listproductstockbycriteria', procutCriteria);
   }
 

@@ -19,7 +19,7 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>选择生产日期</ng-template>
       <mat-form-field>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="procutCriteria.produceDate" name="produceDate" placeholder="选择生产日期" [formControl]="produceDateCtrl">
+          <input matInput [matDatepicker]="picker" [(ngModel)]="produceDate" name="produceDate" placeholder="选择生产日期" [formControl]="produceDateCtrl">
           <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
         </mat-form-field>
@@ -70,7 +70,7 @@
             <span class="product-label-content">产品主成分：{{procutCriteria.composition}}</span>
         </div>
         <div class="product-label-div">
-            <span class="product-label-content">生产日期: {{procutCriteria.produceDate | date: 'yyyy/MM/dd'}}</span>
+            <span class="product-label-content">生产日期: {{produceDate | date: 'yyyy/MM/dd'}}</span>
         </div>
         <div class="product-label-div">
             <span class="product-label-content">尝鲜期：{{procutCriteria.expiredDate}}</span>

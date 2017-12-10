@@ -27,6 +27,8 @@ export class ProductlabelComponent implements OnInit {
   skuCtrl: FormControl;
   produceDateCtrl = new FormControl();
 
+  produceDate: Date;
+
   constructor(private _formBuilder: FormBuilder, private productService: ProductService, private snackBar: MatSnackBar) {
 
     this.skuCtrl = new FormControl();
@@ -84,14 +86,15 @@ export class ProductlabelComponent implements OnInit {
       return;
     }
 
-    if (!this.procutCriteria.produceDate) {
+    if (!this.produceDate) {
       this.snackBar.open('请输入生产日期', 'Invalied', {
         duration: 5000,
         verticalPosition: 'bottom'
       });
       return;
     }
-
+    this.procutCriteria.produceDate = this.produceDate.toLocaleDateString();
+    alert(this.procutCriteria.produceDate);
     if (!this.procutCriteria.labelCount) {
       this.snackBar.open('请输入打印数量', 'Invalied', {
         duration: 5000,
