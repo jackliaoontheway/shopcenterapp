@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
         console.log(this.username + '-' + this.password);
-        localStorage.setItem('isLoggedin', 'true');
+        if (this.username === 'admin' && this.password === 'admin') {
+            localStorage.setItem('isLoggedin', 'true');
+            this.router.navigate(['/products']);
+        } else {
+            alert('用户名或密码错误!');
+        }
     }
 }
