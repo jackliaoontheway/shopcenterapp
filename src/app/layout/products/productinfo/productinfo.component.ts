@@ -11,6 +11,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductinfoComponent implements OnInit {
 
+  printProduct: Product;
   editProduct: Product;
   currentTab = 'productinfo';
   pageIndex = 0;
@@ -44,6 +45,11 @@ export class ProductinfoComponent implements OnInit {
   edit(product) {
     this.currentTab = 'editproduct';
     this.editProduct = product;
+  }
+
+  print(product) {
+    this.currentTab = 'printlabel';
+    this.printProduct = product;
   }
 
   delete(product) {

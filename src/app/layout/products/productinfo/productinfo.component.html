@@ -56,7 +56,11 @@
                             <td>{{product.produceCompany}}</td>
                             <td>{{product.companyCode}}</td>
                             <td>{{product.companyMobile}}</td>
-                            <td><button mat-button (click)="edit(product)">&nbsp;编辑&nbsp;</button><button mat-button (click)="delete(product)">&nbsp;删除&nbsp;</button></td>
+                            <td>
+                                <button mat-button (click)="print(product)">&nbsp;打印&nbsp;</button>
+                                <button mat-button (click)="edit(product)">&nbsp;编辑&nbsp;</button>
+                                <button mat-button (click)="delete(product)">&nbsp;删除&nbsp;</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -80,7 +84,7 @@
     </ngb-tab>
     <ngb-tab id="printlabel" title="打印标签">
         <ng-template ngbTabContent>
-            <app-productlabel></app-productlabel>
+            <app-productlabel [inputedProduct]="printProduct"></app-productlabel>
         </ng-template>
     </ngb-tab>
 </ngb-tabset>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PageEvent, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Product } from '../model/product';
@@ -29,6 +29,8 @@ export class ProductlabelComponent implements OnInit {
 
   produceDate: Date;
 
+  @Input() inputedProduct: Product;
+
   constructor(private _formBuilder: FormBuilder, private productService: ProductService, private snackBar: MatSnackBar) {
 
     this.skuCtrl = new FormControl();
@@ -40,6 +42,9 @@ export class ProductlabelComponent implements OnInit {
    }
 
   ngOnInit() {
+    if ( this.inputedProduct) {
+      this.procutCriteria = this.inputedProduct;
+    }
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -86,15 +91,15 @@ export class ProductlabelComponent implements OnInit {
       return;
     }
 
-    if (!this.produceDate) {
-      this.snackBar.open('请输入生产日期', 'Invalied', {
-        duration: 5000,
-        verticalPosition: 'bottom'
-      });
-      return;
-    }
+    // if (!this.produceDate) {
+    //   this.snackBar.open('请输入生产日期', 'Invalied', {
+    //     duration: 5000,
+    //     verticalPosition: 'bottom'
+    //   });
+    //   return;
+    // }
+
     this.procutCriteria.produceDate = this.produceDate.toLocaleDateString();
-    alert(this.procutCriteria.produceDate);
     if (!this.procutCriteria.labelCount) {
       this.snackBar.open('请输入打印数量', 'Invalied', {
         duration: 5000,
