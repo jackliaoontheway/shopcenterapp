@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent, MatSnackBar } from '@angular/material';
 import { Product } from '../model/product';
 import { ProductService } from '../services/product.service';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -34,7 +35,6 @@ export class ProductinfoComponent implements OnInit {
   }
 
   search() {
-    this.currentTab = 'productinfo';
     this.listProduct();
   }
 
@@ -73,4 +73,16 @@ export class ProductinfoComponent implements OnInit {
      });
   }
 
+  public onTabChange($event: NgbTabChangeEvent) {
+    if ($event.nextId === 'productinfo') {
+      this.currentTab = 'productinfo';
+      this.search();
+    }
+    if ($event.nextId === 'editproduct') {
+      this.editProduct = null;
+    }
+    if ($event.nextId === 'printlabel') {
+
+    }
+  }
 }
