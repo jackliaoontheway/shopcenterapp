@@ -91,15 +91,16 @@ export class ProductlabelComponent implements OnInit {
       return;
     }
 
-    // if (!this.produceDate) {
-    //   this.snackBar.open('请输入生产日期', 'Invalied', {
-    //     duration: 5000,
-    //     verticalPosition: 'bottom'
-    //   });
-    //   return;
-    // }
+    if (!this.produceDate) {
+      // this.snackBar.open('请输入生产日期', 'Invalied', {
+      //   duration: 5000,
+      //   verticalPosition: 'bottom'
+      // });
+      // return;
+    } else {
+      this.procutCriteria.produceDate = this.produceDate.toLocaleDateString();
+    }
 
-    this.procutCriteria.produceDate = this.produceDate.toLocaleDateString();
     if (!this.procutCriteria.labelCount) {
       this.snackBar.open('请输入打印数量', 'Invalied', {
         duration: 5000,

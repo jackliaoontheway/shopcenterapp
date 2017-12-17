@@ -34,10 +34,12 @@ export class ProductinfoComponent implements OnInit {
   }
 
   search() {
+    this.currentTab = 'productinfo';
     this.listProduct();
   }
 
   ngOnInit() {
+    console.log('on init...');
     this.editProduct = new Product();
     this.listProduct();
   }
