@@ -8,7 +8,7 @@ export class Product {
     produceCompany: string;
     companyMobile: string;
     companyCode: string;
-
+    produceAddress: string;
     produceDate: string;
     labelCount: number;
 
