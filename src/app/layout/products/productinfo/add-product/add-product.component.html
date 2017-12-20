@@ -20,14 +20,18 @@
               <label>&nbsp;尝鲜期</label>
               <input [(ngModel)]="product.expiredDate" name="expiredDate" class="form-control">
             </fieldset>
-          <fieldset class="form-group">
+          <!-- <fieldset class="form-group">
             <label>&nbsp;商品成分</label>
             <textarea [(ngModel)]="product.composition" name="composition" class="form-control" rows="3"></textarea>
-          </fieldset>
+          </fieldset> -->
           <fieldset class="form-group">
               <label>&nbsp;生产商</label>
               <input [(ngModel)]="product.produceCompany" name="produceCompany" class="form-control">
-            </fieldset>
+          </fieldset>
+          <fieldset class="form-group">
+            <label>&nbsp;地址</label>
+            <input [(ngModel)]="product.produceAddress" name="produceCompany" class="form-control">
+          </fieldset>
           <fieldset class="form-group">
             <label>&nbsp;食品经营许可证</label>
             <input [(ngModel)]="product.companyCode" name="companyCode" class="form-control">

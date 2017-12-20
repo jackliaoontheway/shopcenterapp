@@ -66,15 +66,11 @@
             <span class="product-label-price">产品名称：{{procutCriteria.name}}</span>
         </div>
         <br/>
-        <div class="product-label-div">
+        <!-- <div class="product-label-div">
             <span class="product-label-content">产品主成分：{{procutCriteria.composition}}</span>
-        </div>
-        <div class="product-label-div">
-            <span class="product-label-content">生产日期: {{produceDate | date: 'yyyy/MM/dd'}}</span>
-        </div>
-        <div class="product-label-div">
-            <span class="product-label-content">尝鲜期：{{procutCriteria.expiredDate}}</span>
-        </div>
+        </div> -->
+        
+        
         <div class="product-label-div">
             <span class="product-label-content">生产商：{{procutCriteria.produceCompany}}</span>
         </div>
@@ -82,10 +78,19 @@
           <span class="product-label-content">食品经营许可证：{{procutCriteria.companyCode}}</span>
         </div>
         <div class="product-label-div">
+          <span class="product-label-content">地址：{{procutCriteria.produceAddress}}</span>
+        </div>
+        <div class="product-label-div">
           <span class="product-label-content">拎包加盟热线：{{procutCriteria.companyMobile}}</span>
         </div>
-        <div class="product-label-price">
-            <span>售价￥{{procutCriteria.price}}</span>
-        </div>
+        <div class="product-label-div">
+          <span class="product-label-content">保质期：{{procutCriteria.expiredDate}}</span>
+      </div>
+        <div class="product-label-div">
+          <span class="product-label-content">生产日期: {{produceDate | date: 'yyyy/MM/dd'}}</span>
+      </div>
+      <div class="product-label-price">
+          <span>售价￥{{procutCriteria.price}}</span>
+      </div>
     </mat-card-content>
 </mat-card>
