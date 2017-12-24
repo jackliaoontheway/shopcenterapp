@@ -3,7 +3,7 @@ export class Product {
     sku: string;
     name: string;
     price: number;
-    expiredDate: string= '48h';
+    expiredDate: string= '48小时';
     composition: string;
     produceCompany: string = '佛山市楷博食品有限公司';
     companyMobile: string = '4000-5566-08';
