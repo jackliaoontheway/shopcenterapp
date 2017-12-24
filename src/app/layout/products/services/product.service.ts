@@ -6,7 +6,7 @@ import { ProductStock } from '../model/productstock';
 @Injectable()
 export class ProductService {
 
-  private productBaseUrl = 'http://localhost:8080/shopcenterms/product';
+  private productBaseUrl = 'http://localhost:9999/shopcenterms/product';
 
   constructor(private http: HttpClient) {
 
