@@ -4,10 +4,15 @@ import { PageHeaderModule } from './../../shared';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderinfoComponent } from './orderinfo/orderinfo.component';
+import { OrderService } from './order.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-    imports: [CommonModule, OrdersRoutingModule, PageHeaderModule],
+    imports: [CommonModule, HttpClientModule , OrdersRoutingModule, PageHeaderModule],
+    providers: [
+        OrderService
+    ],
     declarations: [OrderinfoComponent]
 })
 export class OrdersModule {}
